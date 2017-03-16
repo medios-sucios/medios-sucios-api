@@ -23,7 +23,7 @@
   "author": "anonymous node/sails user",
   "license": "",
   "devDependencies": {
-    "sails-hook-autoreload": "^1.0.0",
+    "sails-hook-autoreload": "^0.13.2",
     "sails-test-helper": "^0.5.0"
   }
 }
