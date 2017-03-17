@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "html-metadata": "git://github.com/wikimedia/html-metadata.git",
     "include-all": "^1.0.0",
     "rc": "1.0.1",
     "sails": "~0.12.13",
