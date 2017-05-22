@@ -26,6 +26,7 @@
   "author": "anonymous node/sails user",
   "license": "",
   "devDependencies": {
+    "sails-generate-eslintrc": "^1.3.2",
     "sails-hook-autoreload": "^0.13.2",
     "sails-test-helper": "^0.5.0"
   }

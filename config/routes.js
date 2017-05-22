@@ -37,6 +37,21 @@ module.exports.routes = {
     action: 'index'
   },
 
+  '/sourcecount':{
+    controller: 'report',
+    action: 'getSourceCount'
+  },
+
+  '/motivecount':{
+    controller: 'report',
+    action: 'getMotiveCount'
+  },
+
+  '/datecount':{
+    controller: 'report',
+    action: 'getDateReportCount'
+  }  
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

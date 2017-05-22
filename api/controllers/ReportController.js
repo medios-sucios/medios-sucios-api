@@ -38,6 +38,98 @@ module.exports = {
     } else {
       res.json({ error: 'you must provide a url' });
     }
+  },
+
+  getSourceCount: function(req, res){
+    Report.native(function(err, collection){
+      if(err){
+        console.log('err', err);
+        res.negotiate(err);
+      }
+
+      var aggregate = [
+        {
+          $group:{
+            _id: "$source",
+            total: {$sum:1}
+          }
+        }
+      ];
+
+      collection.aggregate(aggregate, function(err, result){
+        if(err){
+          console.log('err', err);
+          res.negotiate(err);
+          return;
+        }
+        res.json(result);
+      })
+    })
+  },
+
+  getMotiveCount: function(req, res){
+    Report.native(function(err, collection){
+      if(err){
+        console.log('err', err);
+        res.negotiate(err);
+      }
+
+      var aggregate = [
+        {
+          $group:{
+            _id: "$motive",
+            total: {$sum:1}
+          }
+        }
+      ];
+
+      collection.aggregate(aggregate, function(err, result){
+        if(err){
+          console.log('err', err);
+          res.negotiate(err);
+          return;
+        }
+        res.json(result);
+      })
+    })
+  },
+
+
+  getDateReportCount: function(req, res){
+    var year = 2017;
+    var start = new Date(year-1, 12, 1); //First date of year
+    var end = new Date(year, 11, 31); //Last date of year
+
+    Report.native(function(err, collection){
+      if(err){
+        console.log('err', err);
+        res.negotiate(err);
+      }
+      var aggregate = [
+        {
+          $match: {
+            createdAt:{$gte: start, $lt: end} 
+          }
+        },
+        {
+          $group:{
+            _id: {$month: "$createdAt"},
+            total: {$sum:1}
+          }
+        }
+      ]; 
+
+      collection.aggregate(aggregate, function(err, result){
+        if(err){
+          console.log('err', err);
+          res.negotiate(err);
+          return;
+        }
+        res.json(result);
+      })      
+
+    })
   }
+
 
 };
